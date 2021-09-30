@@ -58,9 +58,9 @@ public class NewUDAF extends AbstractGenericUDAFResolver {
             case DOUBLE:
             case STRING:
             case TIMESTAMP:
-                return new GenericUDAFAverageEvaluator(); //只有参数为时间类型的时候才需要处理，其他数据类型不处理
+                return new GenericUDAFAverageEvaluator(); //case以上类型都支持
             case BOOLEAN:
-            default://如果没有时间参数，则默认报错
+            default://byte、short、int、long、float、double、string、timestamp以外的数据类型都不支持
                 throw new UDFArgumentTypeException(0,
                         "Only numeric or string type arguments are accepted but "
                                 + parameters[0].getTypeName() + " is passed.");
